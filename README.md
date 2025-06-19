@@ -1,57 +1,116 @@
-# Native-Plugin-Development
+# Native Plugin Development 🔌
 
-A Flutter plugin for retrieving device IP addresses with support for both WiFi and mobile data connections.
+<div align="center">
 
-## Features
+![Flutter Version](https://img.shields.io/badge/Flutter-%3E%3D3.0.0-blue.svg)
+![Dart Version](https://img.shields.io/badge/Dart-%3E%3D3.0.0-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+[![GitHub stars](https://img.shields.io/github/stars/KOSALSENSOK096/Native-Plugin-Development?style=social)](https://github.com/KOSALSENSOK096/Native-Plugin-Development/stargazers)
 
-- Get device IP address from WiFi connection
-- Get device IP address from mobile data connection
-- Caching support for better performance
-- Cross-platform support (iOS and Android)
+A powerful Flutter plugin for retrieving device IP addresses with native implementation for both iOS and Android platforms.
+
+[Features](#features) •
+[Installation](#installation) •
+[Usage](#usage) •
+[Documentation](#documentation) •
+[Contributing](#contributing)
+
+</div>
+
+## ✨ Features
+
+🌟 **Cross-Platform Support**
+- Native implementation for iOS and Android
+- Consistent API across platforms
+- Optimized performance
+
+🔍 **IP Address Detection**
+- WiFi IP address retrieval
+- Mobile data IP address retrieval
+- Automatic network interface detection
+
+🚀 **Performance**
+- Built-in caching mechanism
+- Minimal memory footprint
+- Fast response times
+
+🛡️ **Reliability**
+- Comprehensive error handling
+- Fallback mechanisms
 - Type-safe API
-- Error handling and fallback mechanisms
 
-## Installation
+## 📦 Installation
 
-Add this to your package's `pubspec.yaml` file:
+1. Add the dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
   flutter_ip_plugin:
     git:
       url: https://github.com/KOSALSENSOK096/Native-Plugin-Development.git
+      ref: main  # Specify a branch or tag
 ```
 
-## Usage
+2. Install packages:
+
+```bash
+flutter pub get
+```
+
+3. Import the package:
 
 ```dart
 import 'package:flutter_ip_plugin/flutter_ip_plugin.dart';
+```
 
+## 🎯 Usage
+
+### Basic Usage
+
+```dart
 // Get WiFi IP address
-String wifiIp = await FlutterIpPlugin.getIp(useWifi: true);
+try {
+  String wifiIp = await FlutterIpPlugin.getIp(useWifi: true);
+  print('WiFi IP: $wifiIp');
+} catch (e) {
+  print('Error getting WiFi IP: $e');
+}
 
 // Get mobile data IP address
-String mobileIp = await FlutterIpPlugin.getIp(useWifi: false);
+try {
+  String mobileIp = await FlutterIpPlugin.getIp(useWifi: false);
+  print('Mobile IP: $mobileIp');
+} catch (e) {
+  print('Error getting mobile IP: $e');
+}
+```
 
-// Get cached IP address (faster subsequent calls)
+### Using Cache
+
+```dart
+// Get cached IP (faster subsequent calls)
 String cachedIp = await FlutterIpPlugin.getCachedIp();
 
-// Clear the IP address cache
+// Clear cache when needed
 FlutterIpPlugin.clearCache();
 ```
 
-## Error Handling
+## 📚 Documentation
 
-The plugin returns descriptive error messages in case of failures:
+### Error Handling
 
-- "No internet connection" - When no active connection is available
-- "Permission denied" - When required permissions are not granted
-- "Error: [error message]" - For other types of errors
+The plugin provides detailed error messages:
 
-## Required Permissions
+| Error Message | Description | Solution |
+|--------------|-------------|----------|
+| "No internet connection" | No active network connection | Check device connectivity |
+| "Permission denied" | Missing required permissions | Add permissions to manifest/plist |
+| "Error: [message]" | Other technical errors | Check error message details |
 
-### Android
-Add these permissions to your Android Manifest:
+### Required Permissions
+
+#### Android
+Add these permissions to your `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -59,21 +118,74 @@ Add these permissions to your Android Manifest:
 <uses-permission android:name="android.permission.INTERNET"/>
 ```
 
-### iOS
-Add these keys to your Info.plist:
+#### iOS
+Add this to your `Info.plist`:
 
 ```xml
 <key>NSLocalNetworkUsageDescription</key>
 <string>This app needs access to network to get IP address</string>
 ```
 
-## Contributing
+## 🔧 Configuration
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Android Specific
 
-## License
+The plugin automatically handles:
+- WiFi state detection
+- Network interface enumeration
+- IP address formatting
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### iOS Specific
+
+The plugin manages:
+- Network interface scanning
+- Address family filtering
+- Interface name mapping
+
+## 🧪 Testing
+
+Run the included tests:
+
+```bash
+flutter test
+```
+
+Test coverage includes:
+- IP address retrieval
+- Caching mechanism
+- Error scenarios
+- Platform-specific behavior
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**KOSAL SENSOK**
+- GitHub: [@KOSALSENSOK096](https://github.com/KOSALSENSOK096)
+
+## 🙏 Acknowledgments
+
+- Flutter Team for the amazing framework
+- Contributors who helped improve this plugin
+- The open-source community
+
+---
+
+<div align="center">
+Made with ❤️ by KOSAL SENSOK
+</div>
 
 # flutter_ip_plugin_new
 
